@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perpustakaan Kampus Teknik Informatika</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="container hero-content">
+      <div>
+        <p class="eyebrow">Digital Library</p>
+        <h1>Perpustakaan Kampus Teknik Informatika</h1>
+        <p class="tagline">Katalog 20 buku pilihan untuk mendukung belajar, riset, dan pengembangan teknologi.</p>
+      </div>
+      <button id="openAdmin" class="btn btn-dark">Login Admin</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="demo-box">
+      <div class="section-title-row">
+        <h2>Video Demo Perpustakaan</h2>
+        <span class="badge">Preview</span>
+      </div>
+      <div class="video-wrap">
+        <video controls playsinline preload="metadata">
+          <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4" />
+          Browser Anda tidak mendukung tag video.
+        </video>
+      </div>
+      <p class="demo-caption">Video ini berfungsi sebagai demo tampilan presentasi perpustakaan. Anda bisa menggantinya dengan video demo milik kampus nanti.</p>
+    </section>
+
+    <section class="catalog-box">
+      <div class="section-title-row">
+        <h2>Katalog Buku</h2>
+        <span id="bookCount" class="badge">20 Buku</span>
+      </div>
+      <div id="bookList" class="book-grid"></div>
+    </section>
+
+    <section class="borrow-box">
+      <div class="section-title-row">
+        <h2>Form Pinjam Buku</h2>
+        <span class="badge warning">Sistem Simpan Lokal</span>
+      </div>
+      <form id="borrowForm" class="borrow-form">
+        <div class="field-group">
+          <label for="bookSelect">Pilih Buku</label>
+          <select id="bookSelect" required></select>
+        </div>
+        <div class="field-group">
+          <label for="borrowerName">Nama Peminjam</label>
+          <input id="borrowerName" type="text" placeholder="Contoh: Andi Pratama" required />
+        </div>
+        <div class="field-group">
+          <label for="borrowerNim">NIM / ID Mahasiswa</label>
+          <input id="borrowerNim" type="text" placeholder="Contoh: 202401001" required />
+        </div>
+        <div class="field-group">
+          <label for="borrowDate">Tanggal Pinjam</label>
+          <input id="borrowDate" type="date" required />
+        </div>
+        <button class="btn btn-primary" type="submit">Pinjam Buku</button>
+      </form>
+      <p id="message" class="message"></p>
+    </section>
+
+    <section id="adminPanel" class="admin-panel hidden">
+      <div class="section-title-row">
+        <h2>Panel Admin</h2>
+        <button id="logoutAdmin" class="btn btn-outline">Logout</button>
+      </div>
+
+      <div class="admin-stats">
+        <div class="stat-card">
+          <span>Total Permintaan</span>
+          <strong id="totalRequests">0</strong>
+        </div>
+        <div class="stat-card">
+          <span>Sudah Dikembalikan</span>
+          <strong id="returnedCount">0</strong>
+        </div>
+        <div class="stat-card">
+          <span>Belum Dikembalikan</span>
+          <strong id="activeCount">0</strong>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Nama</th>
+              <th>NIM</th>
+              <th>Buku</th>
+              <th>Tanggal Pinjam</th>
+              <th>Status</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="requestTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <div id="adminModal" class="modal" hidden>
+    <div class="modal-card">
+      <h3>Login Admin</h3>
+      <form id="adminLoginForm" class="admin-form">
+        <div class="field-group">
+          <label for="adminUser">Username</label>
+          <input id="adminUser" type="text" placeholder="admin" required />
+        </div>
+        <div class="field-group">
+          <label for="adminPass">Password</label>
+          <input id="adminPass" type="password" placeholder="********" required />
+        </div>
+        <button class="btn btn-primary" type="submit">Masuk</button>
+        <p class="credential-note">Username: admin | Password: admin123</p>
+      </form>
+      <p id="loginError" class="message error"></p>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
